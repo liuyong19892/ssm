@@ -19,7 +19,7 @@
 		<fieldset>
 		<legend>Registration Form</legend>
 		<center>
-		<form:form commandName="user" action="/ly/app/registration/add" name="userForm">
+		<form:form commandName="user" action="/ly/rest/registration/add" name="userForm">
 		
 		<form:hidden path="id"/>
 		<table>

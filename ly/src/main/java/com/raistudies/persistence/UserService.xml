@@ -32,7 +32,7 @@
   		where id = #{id} 
 	</update>
 	
-	<delete id="deleteUser" parameterType="int">
+	<delete id="deleteUser" parameterType="String">
     	DELETE FROM db_user
     	WHERE id = #{id}
     </delete>

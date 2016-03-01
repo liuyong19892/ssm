@@ -11,7 +11,7 @@
 			http://www.springframework.org/schema/context/spring-context-3.0.xsd
 	   		">
 
-	<context:property-placeholder location="classpath:jdbc.properties,classpath:mybatis/mybatis.properties" />
+	<context:property-placeholder location="classpath:properties/jdbc.properties,classpath:mybatis/mybatis.properties" />
 
 	<!-- Enable annotation style of managing transactions -->
 	<tx:annotation-driven transaction-manager="transactionManager" />
@@ -51,20 +51,74 @@
     <property name="filters" value="stat" /> 
 </bean>
 		
-		
+		<!--  配置hibernate SessionFactory-->  
+    <bean id="sessionFactory"  
+        class="org.springframework.orm.hibernate4.LocalSessionFactoryBean">  
+        <property name="dataSource" ref="dataSource" />  
+<!--          <property name="annotatedClasses">   -->
+<!--             <bean class="com.raistudies.utils.EntityBeanFinderFactoryBean">   -->
+<!--                 <property name="classNamePattern" value="com.raistudies.domain.**"/>   -->
+<!--             </bean>   -->
+<!--         </property>   -->
+        <property name="hibernateProperties">  
+            <props>  
+                <prop key="hibernate.dialect">${hibernate.dialect}</prop>
+				<prop key="hibernate.hbm2ddl.auto">${hibernate.hbm2ddl.auto}</prop>
+				<prop key="hibernate.show_sql">true</prop>
+				<prop key="hibernate.format_sql">true</prop>
+				<prop key="hibernate.temp.use_jdbc_metadata_defaults">false</prop>
+            </props>  
+        </property>  
+        <!-- 注解方式配置 -->
+		<property name="packagesToScan" value="com.raistudies.domain" />
+    </bean>  
 
-	<!-- Declare a transaction manager -->
+	<!-- Transaction manager -->
 	<bean id="transactionManager"
 		class="org.springframework.jdbc.datasource.DataSourceTransactionManager"
 		p:dataSource-ref="dataSource" />
 		
+	
+	<!-- JDBC配置 -->
+	<bean id="jdbcTemplate" class="org.springframework.jdbc.core.JdbcTemplate">
+		<property name="dataSource">
+			<ref bean="dataSource" />
+		</property>
+	</bean>
 
+	<!-- JDBC配置 -->
+	<bean id="namedParameterJdbcTemplate"
+		class="org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate">
+		<constructor-arg ref="dataSource" />
+	</bean>
+	
 	<!-- define the SqlSessionFactory, notice that configLocation is not needed when you use MapperFactoryBean -->
     <bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
         <property name="dataSource" ref="dataSource" />
         <property name="configLocation" value="classpath:mybatis/sqlmap-config.xml" />
     </bean>
-
+	
+	 <!-- 事务代理类 -->  
+    <bean id="transactionBese"  
+        class="org.springframework.transaction.interceptor.TransactionProxyFactoryBean"  
+        lazy-init="true" abstract="true">  
+        <property name="transactionManager" ref="transactionManager"></property>  
+        <property name="transactionAttributes">  
+            <props>  
+                <prop key="add*">PROPAGATION_REQUIRED,-Exception</prop>  
+                <prop key="update*">PROPAGATION_REQUIRED,-Exception</prop>  
+                <prop key="insert*">PROPAGATION_REQUIRED,-Exception</prop>  
+                <prop key="modify*">PROPAGATION_REQUIRED,-Exception</prop>  
+                <prop key="delete*">PROPAGATION_REQUIRED,-Exception</prop>  
+                <prop key="del*">PROPAGATION_REQUIRED,-Exception</prop>  
+                <prop key="get*">PROPAGATION_NEVER</prop>  
+            </props>  
+        </property>  
+    </bean>  
+	
+	
+	
+	
     <!-- scan for mappers and let them be autowired -->
     <bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">
         <property name="basePackage" value="com.raistudies.persistence" />

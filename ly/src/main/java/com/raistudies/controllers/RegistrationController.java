@@ -3,6 +3,8 @@ package com.raistudies.controllers;
 import java.util.List;
 import java.util.UUID;
 
+import javax.annotation.Resource;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
@@ -19,23 +21,10 @@ import com.raistudies.validator.RegistrationValidator;
 @Controller
 @RequestMapping(value="/registration")
 public class RegistrationController {
-	
+	@Resource       //@Autowired按byType自动注入，而@Resource默认按 byName自动注入
 	private RegistrationValidator validator = null;
+	@Autowired
 	private UserService userService = null;
-		
-	@Autowired
-	public void setUserService(UserService userService) {
-		this.userService = userService;
-	}
-
-	public RegistrationValidator getValidator() {
-		return validator;
-	}
-
-	@Autowired
-	public void setValidator(RegistrationValidator validator) {
-		this.validator = validator;
-	}
 
 	@RequestMapping(method=RequestMethod.GET)
 	public String showForm(ModelMap model){
@@ -44,7 +33,7 @@ public class RegistrationController {
 		User user = new User();
 		user.setId(UUID.randomUUID().toString());
 		model.addAttribute("user", user);
-		return "reg";
+		return "registration";
 	}
 
 	@RequestMapping(value="/add", method=RequestMethod.POST)

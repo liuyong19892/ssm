@@ -2,15 +2,33 @@ package com.raistudies.domain;
 
 import java.io.Serializable;
 
+import javax.persistence.Basic;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+import javax.persistence.Table;
 
+import org.hibernate.annotations.GenericGenerator;
+
+@Entity
+@Table(name = "db_user")
 public class User implements Serializable{
 	
 	private static final long serialVersionUID = 3647233284813657927L;
-	
+	@Id
+	@GeneratedValue(generator = "system-uuid")  //使用uuid生成主键的方式  
+    @GenericGenerator(name = "system-uuid", strategy = "uuid")   
+    @Column(length=64)
 	private String id;
+	@Basic
+	@Column( name = "name" )
 	private String name = null;
+	@Basic
 	private String standard = null;
+	@Basic
 	private String age;
+	@Basic
 	private String sex = null;
 	
 	public String getId() {

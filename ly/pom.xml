@@ -173,6 +173,24 @@
 			<artifactId>cglib-nodep</artifactId>
 			<version>${cglib.version}</version>
 		</dependency>
+		
+		<dependency>
+	<groupId>org.hibernate</groupId>
+	<artifactId>hibernate-core</artifactId>
+	<version>5.1.0.Final</version>
+</dependency>
+	<dependency>
+		<groupId>org.hibernate.common</groupId>
+		<artifactId>hibernate-commons-annotations</artifactId>
+		<version>5.0.1.Final</version>
+	</dependency>
+	<dependency>
+		<groupId>org.hibernate.javax.persistence</groupId>
+		<artifactId>hibernate-jpa-2.1-api</artifactId>
+		<version>1.0.0.Final</version>
+	</dependency>
+		
+		
   </dependencies>
   
   
@@ -196,6 +214,16 @@
 	                    <server>tomcat6</server>
 	                </configuration>
 	            </plugin>
+
+				<plugin>
+					<artifactId>maven-compiler-plugin</artifactId>
+					<version>3.1</version>
+					<configuration>
+						<fork>true</fork>
+						<executable>C:\Program Files\Java\jdk1.7.0_75\bin\javac.exe</executable>
+					</configuration>
+				</plugin>
+	            
 	    </plugins>
 		<finalName>ssm</finalName>
 		<resources>
