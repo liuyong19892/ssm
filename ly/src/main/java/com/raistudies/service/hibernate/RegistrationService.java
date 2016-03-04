@@ -1,4 +1,4 @@
-package com.raistudies.service.hibernate.registration;
+package com.raistudies.service.hibernate;
 
 import java.util.List;
 

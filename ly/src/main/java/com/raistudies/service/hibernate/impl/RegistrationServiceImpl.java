@@ -1,4 +1,4 @@
-package com.raistudies.service.hibernate.registration.impl;
+package com.raistudies.service.hibernate.impl;
 
 import java.util.List;
 
@@ -7,7 +7,7 @@ import org.springframework.stereotype.Service;
 
 import com.raistudies.dao.ICommonDao;
 import com.raistudies.domain.User;
-import com.raistudies.service.hibernate.registration.RegistrationService;
+import com.raistudies.service.hibernate.RegistrationService;
 
 @Service("registrationService")
 public class RegistrationServiceImpl implements RegistrationService {
