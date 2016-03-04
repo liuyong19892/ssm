@@ -11,26 +11,26 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.raistudies.domain.User;
-import com.raistudies.persistence.UserService;
+import com.raistudies.service.mybatis.UserService;
 
 @Controller
-@RequestMapping(value = "/registration")
+@RequestMapping(value = "/user")
 public class UserController {
 	@Resource
-	private UserService userServiceForHibernate = null;
+	private UserService userService = null;
 
-	@RequestMapping("/addUser")
+	@RequestMapping("/add")
 	// 请求url地址映射，类似Struts的action-mapping
 	public String addUser(User user) {
 
-		userServiceForHibernate.saveUser(user);
+		userService.saveUser(user);
 
-		return "redirect:rest/registration/list";
+		return "redirect:rest/user/list";
 	}
 
 	@RequestMapping(path = "/list", method=RequestMethod.GET)
 	public String getAllUser(ModelMap model) {
-		List<User> users = userServiceForHibernate.getAllUser();
+		List<User> users = userService.getAllUser();
 		model.addAttribute("users", users);
 		User user = new User();
 		user.setId(UUID.randomUUID().toString());

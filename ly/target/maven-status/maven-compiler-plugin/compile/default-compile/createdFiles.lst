@@ -1,9 +1,7 @@
 com\raistudies\validator\RegistrationValidator.class
 com\raistudies\utils\EntityBeanFinderFactoryBean.class
-com\raistudies\persistence\UserService.class
-com\raistudies\persistence\impl\UserServiceImpl.class
 com\raistudies\domain\User.class
-org.codehaus.plexus.compiler.javac.JavacCompiler299138313094975302arguments
+com\raistudies\dao\hibernate\AbstractCommonDAO.class
+com\raistudies\dao\jdbc\JdbcDao.class
 com\raistudies\controllers\RegistrationController.class
 com\raistudies\controllers\UserController.class
-javac.bat
