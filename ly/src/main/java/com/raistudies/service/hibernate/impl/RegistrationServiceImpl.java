@@ -7,10 +7,11 @@ import org.springframework.stereotype.Service;
 
 import com.raistudies.dao.ICommonDao;
 import com.raistudies.domain.User;
+import com.raistudies.service.CommonService;
 import com.raistudies.service.hibernate.RegistrationService;
 
 @Service("registrationService")
-public class RegistrationServiceImpl implements RegistrationService {
+public class RegistrationServiceImpl extends CommonService implements RegistrationService {
 	@Autowired
 	private ICommonDao hibernateCommonDao;
 	
