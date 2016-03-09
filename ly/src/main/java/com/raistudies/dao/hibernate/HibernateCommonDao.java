@@ -7,11 +7,14 @@ import org.apache.log4j.Logger;
 import org.hibernate.Criteria;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
+import org.hibernate.Transaction;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
+import org.springframework.transaction.annotation.Propagation;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.raistudies.dao.ICommonDao;
-
+@Transactional(propagation = Propagation.REQUIRES_NEW)
 @Repository("hibernateCommonDao")
 public class HibernateCommonDao implements ICommonDao{
 	private static final Logger logger = Logger.getLogger(HibernateCommonDao.class);
@@ -25,8 +28,11 @@ public class HibernateCommonDao implements ICommonDao{
 	
 	public <T> void saveOrUpdate(T entity) {
 		try {
-			getSession().saveOrUpdate(entity);
-			getSession().flush();
+			Session session = getSession();
+//			Transaction tx = session.beginTransaction();
+			session.saveOrUpdate(entity);
+			session.flush();
+//			tx.commit();
 			if (logger.isDebugEnabled()) {
 				logger.debug("添加或更新成功," + entity.getClass().getName());
 			}
@@ -38,8 +44,10 @@ public class HibernateCommonDao implements ICommonDao{
 	
 	public <T> Serializable save(T entity) {
 		try {
+			Session session = getSession();
+			Transaction transaction = session.beginTransaction();
 			Serializable id = getSession().save(entity);
-			getSession().flush();
+			transaction.commit();
 			if (logger.isDebugEnabled()) {
 				logger.debug("保存实体成功," + entity.getClass().getName());
 			}

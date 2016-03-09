@@ -17,7 +17,7 @@ public class JUserServiceImpl implements JUserService{
 	
 	@Override
 	public List<User> getAllUser() {
-		String sql = "SELECT id,name,standard,age,sex FROM db_user";
+		String sql = "SELECT * FROM db_user";
 		return jdbcCommonDao.loadAll(sql, null, User.class);
 	}
 	

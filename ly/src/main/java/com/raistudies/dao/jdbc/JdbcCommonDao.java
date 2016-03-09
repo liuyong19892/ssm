@@ -1,15 +1,20 @@
 package com.raistudies.dao.jdbc;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
+import org.springframework.jdbc.core.ResultSetExtractor;
 import org.springframework.jdbc.core.namedparam.BeanPropertySqlParameterSource;
 import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
 import org.springframework.jdbc.core.namedparam.SqlParameterSource;
 import org.springframework.stereotype.Repository;
+
+import com.raistudies.utils.MyBeanUtils;
 @Repository("jdbcCommonDao")
 public class JdbcCommonDao implements IJdbcCommonDao{
 	
@@ -35,8 +40,20 @@ public class JdbcCommonDao implements IJdbcCommonDao{
 		}
 	}
 	
-	public <T> List<T> loadAll(String sql, Object[] params, final Class<T> entityClass) {
-		return  jdbcTemplate.queryForList(sql, params, entityClass);
+	public <T> List<T> loadAll(String sql, Object[] object,Class<T> clazz) {
+		List<T> rsList = new ArrayList<T>();
+		List<Map<String, Object>> mapList = jdbcTemplate.queryForList(sql);
+		T po = null;
+		for(Map<String,Object> m:mapList){
+			try {
+				po = clazz.newInstance();
+				MyBeanUtils.copyMap2Bean_Nobig(po, m);
+				rsList.add(po);
+			}  catch (Exception e) {
+				e.printStackTrace();
+			}
+		}
+		return rsList;
 	}
 
 	

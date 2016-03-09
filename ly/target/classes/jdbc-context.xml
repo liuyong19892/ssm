@@ -78,6 +78,10 @@
 		class="org.springframework.jdbc.datasource.DataSourceTransactionManager"
 		p:dataSource-ref="dataSource" />
 		
+	<bean id="hibernateTransactionManager"  
+    class="org.springframework.orm.hibernate5.HibernateTransactionManager">  
+    <property name="sessionFactory" ref="sessionFactory" /> 
+    </bean> 
 	
 	<!-- Spring JDBC配置 -->
 	<bean id="jdbcTemplate" class="org.springframework.jdbc.core.JdbcTemplate">
@@ -99,13 +103,13 @@
     </bean>
 	
 	 <!-- 事务代理类 -->  
-    <bean id="transactionBese"  
+    <bean id="txAdvice"  
         class="org.springframework.transaction.interceptor.TransactionProxyFactoryBean"  
         lazy-init="true" abstract="true">  
-        <property name="transactionManager" ref="transactionManager"></property>  
+        <property name="transactionManager" ref="hibernateTransactionManager"></property>  
         <property name="transactionAttributes">  
             <props>  
-                <prop key="add*">PROPAGATION_REQUIRED,-Exception</prop>  
+                <prop key="save*">PROPAGATION_REQUIRED,-Exception</prop>  
                 <prop key="update*">PROPAGATION_REQUIRED,-Exception</prop>  
                 <prop key="insert*">PROPAGATION_REQUIRED,-Exception</prop>  
                 <prop key="modify*">PROPAGATION_REQUIRED,-Exception</prop>  

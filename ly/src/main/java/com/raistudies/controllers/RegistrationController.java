@@ -41,6 +41,7 @@ public class RegistrationController {
 		validator.validate(user, result);
 		ModelAndView mv = new ModelAndView("registration");
 		if(!result.hasErrors()){
+			
 			registrationService.saveUser(user);
 			user = new User();
 			user.setId(UUID.randomUUID().toString());
