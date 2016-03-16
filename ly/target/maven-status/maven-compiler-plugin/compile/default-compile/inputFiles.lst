@@ -5,7 +5,9 @@ C:\Users\YL04545\git\ssm\ly\src\main\java\com\raistudies\service\hibernate\Regis
 C:\Users\YL04545\git\ssm\ly\src\main\java\com\raistudies\dao\ICommonDao.java
 C:\Users\YL04545\git\ssm\ly\src\main\java\com\raistudies\service\mybatis\UserService.java
 C:\Users\YL04545\git\ssm\ly\src\main\java\com\raistudies\service\ICommonService.java
+C:\Users\YL04545\git\ssm\ly\src\main\java\com\raistudies\controllers\UploadController.java
 C:\Users\YL04545\git\ssm\ly\src\main\java\com\raistudies\validator\RegistrationValidator.java
+C:\Users\YL04545\git\ssm\ly\src\main\java\com\raistudies\service\mybatis\Impl.java
 C:\Users\YL04545\git\ssm\ly\src\main\java\com\raistudies\domain\User.java
 C:\Users\YL04545\git\ssm\ly\src\main\java\com\raistudies\controllers\RegistrationController.java
 C:\Users\YL04545\git\ssm\ly\src\main\java\com\raistudies\dao\hibernate\HibernateCommonDao.java

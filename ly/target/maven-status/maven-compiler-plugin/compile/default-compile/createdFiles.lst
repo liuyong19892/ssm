@@ -1,8 +1,10 @@
 com\raistudies\utils\EntityBeanFinderFactoryBean.class
+com\raistudies\domain\CommonBean.class
 com\raistudies\domain\User.class
 com\raistudies\service\CommonService.class
 com\raistudies\service\hibernate\impl\RegistrationServiceImpl.class
 com\raistudies\controllers\UserController.class
+com\raistudies\service\mybatis\Impl.class
 com\raistudies\service\hibernate\RegistrationService.class
 com\raistudies\service\mybatis\UserService.class
 com\raistudies\dao\ICommonDao.class
@@ -15,3 +17,4 @@ com\raistudies\controllers\RegistrationController.class
 com\raistudies\service\jdbc\JUserService.class
 com\raistudies\dao\jdbc\JdbcCommonDao.class
 com\raistudies\dao\jdbc\IJdbcCommonDao.class
+com\raistudies\controllers\UploadController.class
