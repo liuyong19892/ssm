@@ -15,6 +15,7 @@ C:\Users\YL04545\git\ssm\ly\src\main\java\com\raistudies\service\jdbc\JUserServi
 C:\Users\YL04545\git\ssm\ly\src\main\java\com\raistudies\dao\jdbc\IJdbcCommonDao.java
 C:\Users\YL04545\git\ssm\ly\src\main\java\com\raistudies\service\jdbc\impl\JUserServiceImpl.java
 C:\Users\YL04545\git\ssm\ly\src\main\java\com\raistudies\domain\CommonBean.java
+C:\Users\YL04545\git\ssm\ly\src\main\java\com\raistudies\domain\SubUser.java
 C:\Users\YL04545\git\ssm\ly\src\main\java\com\raistudies\controllers\UserController.java
 C:\Users\YL04545\git\ssm\ly\src\main\java\com\raistudies\service\CommonService.java
 C:\Users\YL04545\git\ssm\ly\src\main\java\com\raistudies\service\hibernate\impl\RegistrationServiceImpl.java

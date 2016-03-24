@@ -17,7 +17,6 @@ import org.springframework.jdbc.core.RowMapper;
 @Entity
 @Table(name = "db_user")
 public class User implements RowMapper<User>, Serializable{
-	
 	private static final long serialVersionUID = 3647233284813657927L;
 	@Id
 	@GeneratedValue(generator = "system-uuid")  //使用uuid生成主键的方式  
