@@ -5,7 +5,6 @@ import java.util.UUID;
 
 import javax.annotation.Resource;
 
-import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
@@ -16,7 +15,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.raistudies.domain.User;
-import com.raistudies.service.hibernate.registration.RegistrationService;
+import com.raistudies.service.hibernate.RegistrationService;
 import com.raistudies.validator.RegistrationValidator;
 
 @Controller
@@ -26,9 +25,6 @@ public class RegistrationController {
 	private RegistrationValidator validator = null;
 	@Autowired
 	private RegistrationService registrationService = null;
-	@Autowired
-	private SessionFactory sessionFactory;
-	
 	
 	@RequestMapping(method=RequestMethod.GET)
 	public String showForm(ModelMap model){
@@ -45,6 +41,7 @@ public class RegistrationController {
 		validator.validate(user, result);
 		ModelAndView mv = new ModelAndView("registration");
 		if(!result.hasErrors()){
+			
 			registrationService.saveUser(user);
 			user = new User();
 			user.setId(UUID.randomUUID().toString());
